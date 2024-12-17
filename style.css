@@ -424,7 +424,7 @@ body {
 }
 
  /* ========================= formulaire ====================  */
-#club_form {
+.form-container  {
   margin-top: 20px;
     width: 50%;
     background-color:  rgba(0, 0, 0, 0.5);

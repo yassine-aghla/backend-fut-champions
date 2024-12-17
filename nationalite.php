@@ -107,16 +107,25 @@ include 'connection.php';
   </thead>
   <tbody>
     <!-- Exemple de données pour les nationalités -->
-    <tr>
-      <td>1</td>
-      <td>Spain</td>
-      <td class="photo"><img src="spain_flag.jpg" alt="Spain Flag"></td>
-      <td>
-        <button class="btn btn-edit">Edit</button>
-        <button class="btn btn-delete">Delete</button>
-      </td>
-    </tr>
-    <tr>
+    <?php
+require 'connection.php';
+$requete = "SELECT * from nationalities";
+$query = mysqli_query($conn, $requete);
+
+while ($rows = mysqli_fetch_assoc($query)) {
+    echo "<tr>";
+    // echo "<td>1</td>";
+    echo "<td>" . $rows['nationality_id'] . "</td>";
+    echo "<td>" . $rows['name'] . "</td>";
+    echo "<td class='photo'>" . $rows['flag'] . "</td>"; 
+    echo "<td>";
+    echo "<button class='btn btn-edit'>Edit</button>";
+    echo "<button class='btn btn-delete'>Delete</button>";
+    echo "</td>";
+    echo "</tr>";
+}
+?>
+    <!-- <tr>
       <td>2</td>
       <td>France</td>
       <td class="photo"><img src="france_flag.jpg" alt="France Flag"></td>
@@ -124,7 +133,7 @@ include 'connection.php';
         <button class="btn btn-edit">Edit</button>
         <button class="btn btn-delete">Delete</button>
       </td>
-    </tr>
+    </tr> -->
   </tbody>
 </table>
 </div>

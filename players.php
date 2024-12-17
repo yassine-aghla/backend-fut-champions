@@ -149,7 +149,7 @@ include 'connection.php';
 
             <!-- ========================= formulaire ==================== -->
         
-     <div id="player_form" class="form-container">
+     <div id="player_form" class="form-container" style="display:none">
         <h2>Player Form</h2>
         <form id="formulaire_joueur">
          
