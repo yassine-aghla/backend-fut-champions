@@ -114,26 +114,19 @@ $query = mysqli_query($conn, $requete);
 
 while ($rows = mysqli_fetch_assoc($query)) {
     echo "<tr>";
+    $idN=$rows['nationality_id'];
     // echo "<td>1</td>";
     echo "<td>" . $rows['nationality_id'] . "</td>";
     echo "<td>" . $rows['name'] . "</td>";
     echo "<td class='photo'>" . $rows['flag'] . "</td>"; 
     echo "<td>";
-    echo "<button class='btn btn-edit'>Edit</button>";
-    echo "<button class='btn btn-delete'>Delete</button>";
+    echo "<a href='nationalite.php?id=".$idN."' class='btn btn-edit'>Edit</a>";
+    echo "<a href='deleteN.php?id=".$idN."' class='btn btn-delete'>Delete</a>";
     echo "</td>";
     echo "</tr>";
 }
 ?>
-    <!-- <tr>
-      <td>2</td>
-      <td>France</td>
-      <td class="photo"><img src="france_flag.jpg" alt="France Flag"></td>
-      <td>
-        <button class="btn btn-edit">Edit</button>
-        <button class="btn btn-delete">Delete</button>
-      </td>
-    </tr> -->
+
   </tbody>
 </table>
 </div>
@@ -149,7 +142,15 @@ while ($rows = mysqli_fetch_assoc($query)) {
       <label for="nationality-flag-url">URL du Drapeau</label>
       <input type="url" id="nationality-flag-url" name="nationality-flag-url" placeholder="Entrez l'URL du drapeau" required>
     </div>
-    <button type="submit" class="btn-submit">Ajouter</button>
+    <button type="submit" class="btn-submit">
+        <?php
+        if(isset($_GET['id'])){
+            echo "modifier";
+        }else{
+            echo "ajouter";
+        }
+        ?>
+    </button>
   </form>
 </div>
             
