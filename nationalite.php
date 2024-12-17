@@ -79,17 +79,51 @@
                     <ion-icon name="menu-outline"></ion-icon>
                 </div>
 
+            
                 <div class="search">
-                    <label>
-                        <input type="text" placeholder="Search here">
-                        <ion-icon name="search-outline"></ion-icon>
-                    </label>
+                    
+                    <button class="btn btn-add">Ajouter Nationalite</button>
                 </div>
 
                 <div class="user">
                     <img src="img me.jpg" alt="">
                 </div>
             </div>
+            <!-- ========================= table data base ==================== -->
+            <div class="dashboard">
+            <h1>Nationalities Table</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Nationality ID</th>
+      <th>Country Name</th>
+      <th>Flag</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Exemple de données pour les nationalités -->
+    <tr>
+      <td>1</td>
+      <td>Spain</td>
+      <td class="photo"><img src="spain_flag.jpg" alt="Spain Flag"></td>
+      <td>
+        <button class="btn btn-edit">Edit</button>
+        <button class="btn btn-delete">Delete</button>
+      </td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>France</td>
+      <td class="photo"><img src="france_flag.jpg" alt="France Flag"></td>
+      <td>
+        <button class="btn btn-edit">Edit</button>
+        <button class="btn btn-delete">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
              <!-- ========================= formulaire ==================== -->
              <div class="form-container club">
   <h2>Ajouter une Nationalité</h2>
@@ -106,7 +140,7 @@
   </form>
 </div>
             
-            <script src="script.js"></script>
+            <script src="dashboard.js"></script>
 
             <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

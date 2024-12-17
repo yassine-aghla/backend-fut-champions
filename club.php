@@ -79,22 +79,59 @@
                     <ion-icon name="menu-outline"></ion-icon>
                 </div>
 
+                
+                    
                 <div class="search">
-                    <label>
-                        <input type="text" placeholder="Search here">
-                        <ion-icon name="search-outline"></ion-icon>
-                    </label>
+                    
+                    <button id="addc" class="btn btn-add">Ajouter club</button>
                 </div>
+            
 
                 <div class="user">
                     <img src="img me.jpg" alt="">
                 </div>
             </div>
+<!-- ========================= table data base ==================== -->
+<div class="dashboard">
+            <h1>Clubs Table</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Club ID</th>
+          <th>Club Name</th>
+          <th>Logo</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Exemple de données pour les clubs -->
+        <tr>
+          <td>1</td>
+          <td>FC Barcelona</td>
+          <td class="photo"><img src="barcelona_logo.jpg" alt="Club Logo"></td>
+        
+          <td>
+            <button class="btn btn-edit">Edit</button>
+            <button class="btn btn-delete">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Real Madrid</td>
+          <td class="photo"><img src="madrid_logo.jpg" alt="Club Logo"></td>
+          <td>
+            <button class="btn btn-edit">Edit</button>
+            <button class="btn btn-delete">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
              <!-- ========================= formulaire ==================== -->
-             <div class="form-container club">
+    <div id="club_form" class="form-container club">
      <h2>Ajouter un Club</h2>
   <form>
-    <div class="form-group">
+    <div  class="form-group">
       <label for="club-name">Nom du Club</label>
       <input type="text" id="club-name" name="club-name" placeholder="Entrez le nom du club" required>
     </div>
@@ -107,7 +144,9 @@
 </div>
 
             
-            <script src="script.js"></script>
+           <script src="dashboard.js"></script>
+             <script src="club.js"></script>
+            
 
             <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

@@ -80,19 +80,71 @@
                 </div>
 
                 <div class="search">
-                    <label>
-                        <input type="text" placeholder="Search here">
-                        <ion-icon name="search-outline"></ion-icon>
-                    </label>
+                    
+                    <button id= "add"class="btn btn-add">Ajouter Player</button>
                 </div>
 
                 <div class="user">
                     <img src="img me.jpg" alt="">
                 </div>
             </div>
+<!-- ========================= table data base ==================== -->
+<div  class="dashboard">
+    <h1>Players Table</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Player ID</th>
+          <th>Name</th>
+          <th>Photo</th>
+          <th>Position</th>
+          <th>Club ID</th>
+          <th>Nationality ID</th>
+          <th>Rating</th>
+          <th>Physical GK ID</th>
+          <th>Physical Player ID</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Exemple de données -->
+        <tr>
+          <td>1</td>
+          <td>John Doe</td>
+          <td class="photo"><img src="player1.jpg" alt="Player Photo"></td>
+          <td>ST</td>
+          <td>5</td>
+          <td>10</td>
+          <td>85</td>
+          <td>2</td>
+          <td>3</td>
+          <td>
+            <button class="btn btn-edit">Edit</button>
+            <button class="btn btn-delete">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Jane Smith</td>
+          <td class="photo"><img src="player2.jpg" alt="Player Photo"></td>
+          <td>GK</td>
+          <td>7</td>
+          <td>15</td>
+          <td>90</td>
+          <td>1</td>
+          <td>4</td>
+          <td>
+            <button class="btn btn-edit">Edit</button>
+            <button class="btn btn-delete">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
             <!-- ========================= formulaire ==================== -->
         
-     <div class="form-container">
+     <div id="player_form" class="form-container">
         <h2>Player Form</h2>
         <form id="formulaire_joueur">
          
@@ -247,7 +299,8 @@
         </form>
       </div> 
 
-            <script src="script.js"></script>
+            <script src="dashboard.js"></script>
+            <script src="players.js"></script>
 
             <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

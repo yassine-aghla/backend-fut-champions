@@ -79,12 +79,12 @@
                     <ion-icon name="menu-outline"></ion-icon>
                 </div>
 
-                <div class="search">
+                <!-- <div class="search">
                     <label>
                         <input type="text" placeholder="Search here">
                         <ion-icon name="search-outline"></ion-icon>
                     </label>
-                </div>
+                </div> -->
 
                 <div class="user">
                     <img src="img me.jpg" alt="">
@@ -307,7 +307,8 @@
     </div> -->
 
     <!-- =========== Scripts =========  -->
-    <script src="script.js"></script>
+    <script src="dashboard.js"></script>
+   
 
     <!-- ======= Charts JS ====== -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>

@@ -1,4 +1,3 @@
-// add hovered class to selected list item
 let list = document.querySelectorAll(".navigation li");
 
 function activeLink() {
@@ -19,3 +18,9 @@ toggle.onclick = function () {
   navigation.classList.toggle("active");
   main.classList.toggle("active");
 };
+
+let addplayer=document.getElementById("add")
+let forum=document.getElementById("player_form")
+addplayer.addEventListener("click",()=>{
+forum.style.display="block"
+});
