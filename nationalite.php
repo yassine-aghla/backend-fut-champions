@@ -82,7 +82,7 @@
             
                 <div class="search">
                     
-                    <button class="btn btn-add">Ajouter Nationalite</button>
+                    <button type="button" onclick="NatinaliteForm()" class="btn btn-add">Ajouter Nationalite</button>
                 </div>
 
                 <div class="user">
@@ -125,7 +125,7 @@
 </table>
 </div>
              <!-- ========================= formulaire ==================== -->
-             <div class="form-container club">
+             <div id="National_form" class="form-container club">
   <h2>Ajouter une Nationalité</h2>
   <form>
     <div class="form-group">
@@ -141,6 +141,8 @@
 </div>
             
             <script src="dashboard.js"></script>
+            <script src="nationalite.js"></script>
+            
 
             <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

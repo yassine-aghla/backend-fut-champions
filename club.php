@@ -83,7 +83,7 @@
                     
                 <div class="search">
                     
-                    <button id="addc" class="btn btn-add">Ajouter club</button>
+                    <button type= "button" onclick="clubForm()" id="addc" class="btn btn-add">Ajouter club</button>
                 </div>
             
 
@@ -128,7 +128,7 @@
     </table>
   </div>
              <!-- ========================= formulaire ==================== -->
-    <div id="club_form" class="form-container club">
+    <div id="club_form" class="form-container club" style="display:none">
      <h2>Ajouter un Club</h2>
   <form>
     <div  class="form-group">
@@ -146,6 +146,7 @@
             
            <script src="dashboard.js"></script>
              <script src="club.js"></script>
+            
             
 
             <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
