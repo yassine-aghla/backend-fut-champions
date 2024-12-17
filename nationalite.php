@@ -1,3 +1,7 @@
+<?php
+include 'connection.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -125,9 +129,9 @@
 </table>
 </div>
              <!-- ========================= formulaire ==================== -->
-             <div id="National_form" class="form-container club">
+             <div id="National_form" class="form-container club " style="display:none">
   <h2>Ajouter une Nationalité</h2>
-  <form>
+  <form method="POST" action="create.php">
     <div class="form-group">
       <label for="nationality-name">Nom de la Nationalité</label>
       <input type="text" id="nationality-name" name="nationality-name" placeholder="Entrez le nom de la nationalité" required>

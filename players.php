@@ -299,7 +299,7 @@ include 'connection.php';
             </div>
           </div>
           <div>
-            <button type="button" class="btn-submit"> ajouter  joueur </button>
+            <button type="submit" class="btn-submit"> ajouter  joueur </button>
           </div>
         </form>
       </div> 
