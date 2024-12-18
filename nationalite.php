@@ -86,7 +86,7 @@ include 'connection.php';
             
                 <div class="search">
                     
-                    <button type="button" onclick="NatinaliteForm()" class="btn btn-add">Ajouter Nationalite</button>
+                <a href='ForumN.php' class="btn btn-add">Ajouter Nationalite </a>
                 </div>
 
                 <div class="user">
@@ -120,8 +120,8 @@ while ($rows = mysqli_fetch_assoc($query)) {
     echo "<td>" . $rows['name'] . "</td>";
     echo "<td class='photo'>" . $rows['flag'] . "</td>"; 
     echo "<td>";
-    echo "<a href='nationalite.php?id=".$idN."' class='btn btn-edit'>Edit</a>";
-    echo "<a href='deleteN.php?id=".$idN."' class='btn btn-delete'>Delete</a>";
+    echo "<a href='ForumN.php?id=".$idN."' class='btn btn-edit' >Edit</a>";
+    echo "<a href='deleteN.php?id=".$idN."' class='btn btn-delete' >Delete</a>";
     echo "</td>";
     echo "</tr>";
 }
@@ -131,28 +131,7 @@ while ($rows = mysqli_fetch_assoc($query)) {
 </table>
 </div>
              <!-- ========================= formulaire ==================== -->
-             <div id="National_form" class="form-container club " style="display:none">
-  <h2>Ajouter une Nationalité</h2>
-  <form method="POST" action="create.php">
-    <div class="form-group">
-      <label for="nationality-name">Nom de la Nationalité</label>
-      <input type="text" id="nationality-name" name="nationality-name" placeholder="Entrez le nom de la nationalité" required>
-    </div>
-    <div class="form-group">
-      <label for="nationality-flag-url">URL du Drapeau</label>
-      <input type="url" id="nationality-flag-url" name="nationality-flag-url" placeholder="Entrez l'URL du drapeau" required>
-    </div>
-    <button type="submit" class="btn-submit">
-        <?php
-        if(isset($_GET['id'])){
-            echo "modifier";
-        }else{
-            echo "ajouter";
-        }
-        ?>
-    </button>
-  </form>
-</div>
+          
             
             <script src="dashboard.js"></script>
             <script src="nationalite.js"></script>
