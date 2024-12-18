@@ -87,7 +87,7 @@ include 'connection.php';
                     
                 <div class="search">
                     
-                    <button type= "button" onclick="clubForm()" id="addc" class="btn btn-add">Ajouter club</button>
+                    <a href='ForumC.php' class="btn btn-add">Ajouter club</button>
                 </div>
             
 
@@ -109,25 +109,25 @@ include 'connection.php';
       </thead>
       <tbody>
         <!-- Exemple de données pour les clubs -->
-        <tr>
-          <td>1</td>
-          <td>FC Barcelona</td>
-          <td class="photo"><img src="barcelona_logo.jpg" alt="Club Logo"></td>
-        
-          <td>
-            <button class="btn btn-edit">Edit</button>
-            <button class="btn btn-delete">Delete</button>
-          </td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Real Madrid</td>
-          <td class="photo"><img src="madrid_logo.jpg" alt="Club Logo"></td>
-          <td>
-            <button class="btn btn-edit">Edit</button>
-            <button class="btn btn-delete">Delete</button>
-          </td>
-        </tr>
+        <?php
+require 'connection.php';
+$requete = "SELECT * from clubs";
+$query = mysqli_query($conn, $requete);
+
+while ($rows = mysqli_fetch_assoc($query)) {
+    echo "<tr>";
+    $idC=$rows['club_id'];
+    // echo "<td>1</td>";
+    echo "<td>" . $rows['club_id'] . "</td>";
+    echo "<td>" . $rows['name'] . "</td>";
+    echo "<td class='photo'>" . $rows['logo'] . "</td>"; 
+    echo "<td>";
+    echo "<a href='ForumC.php?id=".$idC."' class='btn btn-edit' >Edit</a>";
+    echo "<a href='deleteC.php?id=".$idC."' class='btn btn-delete' >Delete</a>";
+    echo "</td>";
+    echo "</tr>";
+}
+?>
       </tbody>
     </table>
   </div>

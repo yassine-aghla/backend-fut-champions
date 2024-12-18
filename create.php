@@ -6,9 +6,8 @@
     require 'connection.php';
     $sql="update nationalities set  name='$nomNatinaolity', flag='$flagNation' where nationality_id='$id' ";
     $q=mysqli_query($conn,$sql);
-    if(isset($q)){
-        echo "<h1>modification succes</h1>";
-    
+    if(isset($sql)){
+        header("location:nationalite.php");
     }
  }else{
 include 'connection.php';

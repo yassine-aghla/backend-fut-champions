@@ -7,36 +7,36 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="National_form" class="form-container club ">
-<h2>formulaire de les nationalities</h2>
+  <div id="club_form" class="form-container club ">
+<h2>formulaire de les clubs</h2>
 <?php
   require 'connection.php';
   if(isset($_GET['id'])){
     $id=$_GET['id'];
-    $sql="select * from nationalities where nationality_id='$id'";
+    $sql="select * from clubs where club_id='$id'";
     $q=mysqli_query($conn,$sql);
     $rows=mysqli_fetch_assoc($q);
     $name=$rows['name'];
-    $flag=$rows['flag'];
+    $logo=$rows['logo'];
  }
   ?>
-<form method="POST" action="create.php?<?php if(isset($_GET['id'])){
+<form method="POST" action="createC.php?<?php if(isset($_GET['id'])){
   echo "id=update";} ?>">
-    <?php
+  <?php
 // Vérifiez si l'ID est dans l'URL.
 $id = isset($_GET['id']) ? htmlspecialchars($_GET['id']) : '';
 ?>
   <input type="hidden" name="id" value="<?php echo $id; ?>">
     <div class="form-group">
-      <label for="nationality-name">Nom de la Nationalité</label>
-      <input type="text" id="nationality-name" name="nationality-name" placeholder="Entrez le nom de la nationalité" value="<?php if(isset($_GET['id'])){
+      <label for="club-name">Nom de Club</label>
+      <input type="text" id="club-name" name="club-name" placeholder="Entrez le nom de club" value="<?php if(isset($_GET['id'])){
         echo $name;
       } ?>" required>
     </div>
     <div class="form-group">
-      <label for="nationality-flag-url">URL du Drapeau</label>
-      <input type="url" id="nationality-flag-url" name="nationality-flag-url" placeholder="Entrez l'URL du drapeau" value="<?php if(isset($_GET['id'])){
-        echo $flag; } ?>" required>
+      <label for="club-url">URL du club</label>
+      <input type="url" id="club-url" name="club-url" placeholder="Entrez l'URL du drapeau" value="<?php if(isset($_GET['id'])){
+        echo $logo; } ?>" required>
     </div>
     <button  type="submit" class="btn-submit">
         <?php
