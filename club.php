@@ -1,4 +1,3 @@
-
 <?php
 include 'connection.php';
 ?>
@@ -87,7 +86,7 @@ include 'connection.php';
                     
                 <div class="search">
                     
-                    <a href='ForumC.php' class="btn btn-add">Ajouter club</button>
+                    <a href='ForumC.php' class="btn btn-add">Ajouter club</a>
                 </div>
             
 
@@ -120,7 +119,7 @@ while ($rows = mysqli_fetch_assoc($query)) {
     // echo "<td>1</td>";
     echo "<td>" . $rows['club_id'] . "</td>";
     echo "<td>" . $rows['name'] . "</td>";
-    echo "<td class='photo'>" . $rows['logo'] . "</td>"; 
+    echo "<td class='photo'><img src=" . $rows['logo'] . "></td>"; 
     echo "<td>";
     echo "<a href='ForumC.php?id=".$idC."' class='btn btn-edit' >Edit</a>";
     echo "<a href='deleteC.php?id=".$idC."' class='btn btn-delete' >Delete</a>";
@@ -128,11 +127,12 @@ while ($rows = mysqli_fetch_assoc($query)) {
     echo "</tr>";
 }
 ?>
+
       </tbody>
     </table>
   </div>
              <!-- ========================= formulaire ==================== -->
-    <div id="club_form" class="form-container club" style="display:none">
+    <!-- <div id="club_form" class="form-container club" style="display:none">
      <h2>Ajouter un Club</h2>
   <form>
     <div  class="form-group">
@@ -145,7 +145,7 @@ while ($rows = mysqli_fetch_assoc($query)) {
     </div>
     <button type="submit" class="btn-submit">Ajouter</button>
   </form>
-</div>
+</div> -->
 
             
            <script src="dashboard.js"></script>

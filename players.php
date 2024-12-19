@@ -85,8 +85,7 @@ include 'connection.php';
                 </div>
 
                 <div class="search">
-                    
-                    <button id= "add"class="btn btn-add">Ajouter Player</button>
+                    <a href='ForumP.php' class="btn btn-add">Ajouter Player </a>
                 </div>
 
                 <div class="user">
@@ -149,161 +148,174 @@ include 'connection.php';
 
             <!-- ========================= formulaire ==================== -->
         
-     <div id="player_form" class="form-container" style="display:none">
-        <h2>Player Form</h2>
-        <form id="formulaire_joueur">
-         
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Enter player name"
-              required
-            />
-            <span id="name-error"></span>
-          </div>
-          <div class="form-group">
-            <label for="photo">Photo</label>
-            <input type="url" id="photo" name="photo" />
-            <span id="photo-error"></span>
-          </div>
-          <div class="form-group">
-            <label for="position">Position</label>
-            <select id="position" name="position">
-              <option value="CBR">GARDIEN</option>
-              <option value="CBR">CENTER BACK RIGHT</option>
-              <option value="CBL">CENTER BACK LEFT</option>
-              <option value="LB">LEFT BACK</option>
-              <option value="RB">REIGHT BACK</option>
-              <option value="MDF">Midfield</option>
-              <option value="MR">MILIEU RELAYEUR</option>
-              <option value="MO">MILIEU OFFENSIF</option>
-              <option value="LW">LEFT WINGER</option>
-              <option value="ST">Striker (ST)</option>
-              <option value="RW">REIGHT WINGER</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="nationality">Nationality</label>
-            <input type="text" id="nationality" name="nationality" placeholder="Enter nationality" />
-            <span id="natoinality-error"></span>
-          </div>
-          <div class="form-group">
-            <label for="photo">drapeau</label>
-            <input type="url" id="joueur_drapeau" name="photo" />
-            <span id="joueur_drapeau-error"></span>
-          </div>
+            <div id="player_form" class="form-container" style="display:none">
+  <h2>Player Form</h2>
+  <form id="formulaire_joueur">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter player name" required />
+      <span id="name-error"></span>
+    </div>
+    <div class="form-group">
+      <label for="photo">Photo</label>
+      <input type="url" id="photo" name="photo" placeholder="Enter photo URL" />
+      <span id="photo-error"></span>
+    </div>
 
-          <div class="form-group">
-            <label for="photo">logo</label>
-            <input type="url" id="joueur_logo" name="photo" />
-            <span id="joueur_logo-error"></span>
-          </div>
-          <div class="form-group">
-            <label for="club">Club</label>
-            <input type="text" id="club"  name="club"  placeholder="Enter club name"/>
-            <span id="club-error"></span>
-          </div>
+    <div class="form-group">
+      <label for="nationality">Nationality</label>
+      <input type="text" id="nationality" name="nationality" placeholder="Enter nationality" />
+      <span id="nationality-error"></span>
+    </div>
+    <div class="form-group">
+      <label for="flag">Flag</label>
+      <input type="url" id="joueur_drapeau" name="flag" placeholder="Enter flag URL" />
+      <span id="joueur_drapeau-error"></span>
+    </div>
+    <div class="form-group">
+      <label for="logo">Logo</label>
+      <input type="url" id="joueur_logo" name="logo" placeholder="Enter logo URL" />
+      <span id="joueur_logo-error"></span>
+    </div>
+    <div class="form-group">
+      <label for="club">Club</label>
+      <input type="text" id="club" name="club" placeholder="Enter club name" />
+      <span id="club-error"></span>
+    </div>
 
-          <div class="form-group">
-            <label for="rating">Rating</label>
-            <input
-              type="number"
-              id="rating"
-              name="rating"
-              placeholder="Enter player rating"
-              min="0"
-              max="100"
-            />
-            <span id="rating-error"></span>
-          </div>
+    <div class="form-group">
+      <label for="rating">Rating</label>
+      <input type="number" id="rating" name="rating" placeholder="Enter player rating" min="0" max="100" />
+      <span id="rating-error"></span>
+    </div>
 
-          <div class="avis">
-            <div class="form-group">
-              <label for="pace">Pace</label>
-              <input
-                type="number"
-                id="pace"
-                name="pace"
-                placeholder="Enter pace"
-                min="0"
-                max="100"
-              />
-              <span id="pace-error"></span>
-            </div>
-            <div class="form-group">
-              <label for="shooting">Shooting</label>
-              <input
-                type="number"
-                id="shooting"
-                name="shooting"
-                placeholder="Enter shooting"
-                min="0"
-                max="100"
-              />
-              <span id="shooting-error"></span>
-            </div>
-          </div>
-          <div class="avis">
-            <div class="form-group">
-              <label for="passing">Passing</label>
-              <input
-                type="number"
-                id="passing"
-                name="passing"
-                placeholder="Enter passing"
-                min="0"
-                max="100"
-              />
-              <span id="passing-error"></span>
-            </div>
-            <div class="form-group">
-              <label for="dribbling">Dribbling</label>
-              <input
-                type="number"
-                id="dribbling"
-                name="dribbling"
-                placeholder="Enter dribbling"
-                min="0"
-                max="100"
-              />
-              <span id="dribbling-error"></span>
-            </div>
-          </div>
-          <div class="avis">
-            <div class="form-group">
-              <label for="defending">Defending</label>
-              <input
-                type="number"
-                id="defending"
-                name="defending"
-                placeholder="Enter defending"
-                min="0"
-                max="100"
-              />
-              <span id="defending-error"></span>
-            </div>
-            <div class="form-group">
-              <label for="physical">Physical</label>
-              <input
-                type="number"
-                id="physical"
-                name="physical"
-                placeholder="Enter physical"
-                min="0"
-                max="100"
-              /><br />
-              <span id="physical-error"></span>
-            </div>
-          </div>
-          <div>
-            <button type="submit" class="btn-submit"> ajouter  joueur </button>
-          </div>
-        </form>
-      </div> 
+    <div class="form-group">
+      <label for="position">Position</label>
+      <select id="position" name="position">
+        <option value="GK">GARDIEN</option>
+        <option value="CBR">CENTER BACK RIGHT</option>
+        <option value="CBL">CENTER BACK LEFT</option>
+        <option value="LB">LEFT BACK</option>
+        <option value="RB">REIGHT BACK</option>
+        <option value="MDF">Midfield</option>
+        <option value="MR">MILIEU RELAYEUR</option>
+        <option value="MO">MILIEU OFFENSIF</option>
+        <option value="LW">LEFT WINGER</option>
+        <option value="ST">Striker (ST)</option>
+        <option value="RW">REIGHT WINGER</option>
+      </select>
+    </div>
+<div id="avis_player">
+    <div class="avis">
+      <div class="form-group">
+        <label for="stat1" id="stat1-label">Pace</label>
+        <input type="number" id="stat1" name="pace" placeholder="Enter pace" min="0" max="100" />
+      </div>
+      <div class="form-group">
+        <label for="stat2" id="stat2-label">Shooting</label>
+        <input type="number" id="stat2" name="shooting" placeholder="Enter shooting" min="0" max="100" />
+      </div>
+    </div>
+    <div class="avis">
+      <div class="form-group">
+        <label for="stat3" id="stat3-label">Passing</label>
+        <input type="number" id="stat3" name="passing" placeholder="Enter passing" min="0" max="100" />
+      </div>
+      <div class="form-group">
+        <label for="stat4" id="stat4-label">Dribbling</label>
+        <input type="number" id="stat4" name="dribbling" placeholder="Enter dribbling" min="0" max="100" />
+      </div>
+    </div>
+    <div class="avis">
+      <div class="form-group">
+        <label for="stat5" id="stat5-label">Defending</label>
+        <input type="number" id="stat5" name="defending" placeholder="Enter defending" min="0" max="100" />
+      </div>
+      <div class="form-group">
+        <label for="stat6" id="stat6-label">Physical</label>
+        <input type="number" id="stat6" name="physical" placeholder="Enter physical" min="0" max="100" />
+      </div>
+    </div>
+    <div>
 
+    <div id="avis_gardien" style="display:none">
+    <div class="avis">
+      <div class="form-group">
+        <label for="stat1" id="stat1-label">Pace</label>
+        <input type="number" id="stat1" name="pace" placeholder="Enter pace" min="0" max="100" />
+      </div>
+      <div class="form-group">
+        <div class="avis_player">
+            <div class="avis">
+    <div class="form-group">
+      <label for="player_pace" id="player_pace-label">Player Pace</label>
+      <input type="number" id="player_pace" name="player_pace" placeholder="Enter player pace" min="0" max="100" />
+    </div>
+    <div class="form-group">
+      <label for="player_shooting" id="player_shooting-label">Player Shooting</label>
+      <input type="number" id="player_shooting" name="player_shooting" placeholder="Enter player shooting" min="0" max="100" />
+    </div>
+  </div>
+  <div class="avis">
+    <div class="form-group">
+      <label for="player_passing" id="player_passing-label">Player Passing</label>
+      <input type="number" id="player_passing" name="player_passing" placeholder="Enter player passing" min="0" max="100" />
+    </div>
+    <div class="form-group">
+      <label for="player_dribbling" id="player_dribbling-label">Player Dribbling</label>
+      <input type="number" id="player_dribbling" name="player_dribbling" placeholder="Enter player dribbling" min="0" max="100" />
+    </div>
+  </div>
+  <div class="avis">
+    <div class="form-group">
+      <label for="player_defending" id="player_defending-label">Player Defending</label>
+      <input type="number" id="player_defending" name="player_defending" placeholder="Enter player defending" min="0" max="100" />
+    </div>
+    <div class="form-group">
+      <label for="player_physical" id="player_physical-label">Player Physical</label>
+      <input type="number" id="player_physical" name="player_physical" placeholder="Enter player physical" min="0" max="100" />
+    </div>
+  </div>
+</div>
+
+<div class="avis_gardien ">
+  <div class="avis">
+    <div class="form-group">
+      <label for="gardien_diving" id="gardien_diving-label">Gardien Diving</label>
+      <input type="number" id="gardien_diving" name="gardien_diving" placeholder="Enter gardien diving" min="0" max="100" />
+    </div>
+    <div class="form-group">
+      <label for="gardien_handling" id="gardien_handling-label">Gardien Handling</label>
+      <input type="number" id="gardien_handling" name="gardien_handling" placeholder="Enter gardien handling" min="0" max="100" />
+    </div>
+  </div>
+  <div class="avis">
+    <div class="form-group">
+      <label for="gardien_kicking" id="gardien_kicking-label">Gardien Kicking</label>
+      <input type="number" id="gardien_kicking" name="gardien_kicking" placeholder="Enter gardien kicking" min="0" max="100" />
+    </div>
+    <div class="form-group">
+      <label for="gardien_reflexes" id="gardien_reflexes-label">Gardien Reflexes</label>
+      <input type="number" id="gardien_reflexes" name="gardien_reflexes" placeholder="Enter gardien reflexes" min="0" max="100" />
+    </div>
+  </div>
+  <div class="avis">
+    <div class="form-group">
+      <label for="gardien_speed" id="gardien_speed-label">Gardien Speed</label>
+      <input type="number" id="gardien_speed" name="gardien_speed" placeholder="Enter gardien speed" min="0" max="100" />
+    </div>
+    <div class="form-group">
+      <label for="gardien_positioning" id="gardien_positioning-label">Gardien Positioning</label>
+      <input type="number" id="gardien_positioning" name="gardien_positioning" placeholder="Enter gardien positioning" min="0" max="100" />
+    </div>
+  </div>
+</div>
+
+
+      <button type="submit" class="btn-submit">Ajouter joueur</button>
+    </div>
+  </form>
+</div>
             <script src="dashboard.js"></script>
             <script src="players.js"></script>
 

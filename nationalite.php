@@ -118,7 +118,7 @@ while ($rows = mysqli_fetch_assoc($query)) {
     // echo "<td>1</td>";
     echo "<td>" . $rows['nationality_id'] . "</td>";
     echo "<td>" . $rows['name'] . "</td>";
-    echo "<td class='photo'>" . $rows['flag'] . "</td>"; 
+    echo "<td class='photo'><img src=" . $rows['flag'] . "></td>"; 
     echo "<td>";
     echo "<a href='ForumN.php?id=".$idN."' class='btn btn-edit' >Edit</a>";
     echo "<a href='deleteN.php?id=".$idN."' class='btn btn-delete' >Delete</a>";
