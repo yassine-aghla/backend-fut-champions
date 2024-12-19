@@ -26,7 +26,7 @@
 
     <div class="form-group">
       <label for="nationality">Nationality</label>
-      <input type="text" id="nationality" name="nationality" placeholder="Enter nationality" />
+      <input type="number" id="nationality" name="nationalityP" placeholder="Enter nationality" />
       <span id="nationality-error"></span>
     </div>
     <div class="form-group">
@@ -41,7 +41,7 @@
     </div>
     <div class="form-group">
       <label for="club">Club</label>
-      <input type="text" id="club" name="club" placeholder="Enter club name" />
+      <input type="number" id="club" name="clubP" placeholder="Enter club name" />
       <span id="club-error"></span>
     </div>
 

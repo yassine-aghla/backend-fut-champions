@@ -93,62 +93,65 @@ include 'connection.php';
                 </div>
             </div>
 <!-- ========================= table data base ==================== -->
-<div  class="dashboard">
+<?php
+include 'connection.php';
+
+// Récupérer les données de la table `players`
+$query = "
+    SELECT p.player_id, p.name, p.photo, p.position, p.club_id, p.nationality_id, p.rating, p.physicalGk_id, p.physicalPlayer_id
+    FROM players p
+";
+$result = mysqli_query($conn, $query);
+
+if (!$result) {
+    die("Erreur lors de la récupération des données : " . mysqli_error($conn));
+}
+?>
+
+<div class="dashboard">
     <h1>Players Table</h1>
     <table>
-      <thead>
-        <tr>
-          <th>Player ID</th>
-          <th>Name</th>
-          <th>Photo</th>
-          <th>Position</th>
-          <th>Club ID</th>
-          <th>Nationality ID</th>
-          <th>Rating</th>
-          <th>Physical GK ID</th>
-          <th>Physical Player ID</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Exemple de données -->
-        <tr>
-          <td>1</td>
-          <td>John Doe</td>
-          <td class="photo"><img src="player1.jpg" alt="Player Photo"></td>
-          <td>ST</td>
-          <td>5</td>
-          <td>10</td>
-          <td>85</td>
-          <td>2</td>
-          <td>3</td>
-          <td>
-            <button class="btn btn-edit">Edit</button>
-            <button class="btn btn-delete">Delete</button>
-          </td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Jane Smith</td>
-          <td class="photo"><img src="player2.jpg" alt="Player Photo"></td>
-          <td>GK</td>
-          <td>7</td>
-          <td>15</td>
-          <td>90</td>
-          <td>1</td>
-          <td>4</td>
-          <td>
-            <button class="btn btn-edit">Edit</button>
-            <button class="btn btn-delete">Delete</button>
-          </td>
-        </tr>
-      </tbody>
+        <thead>
+            <tr>
+                <th>Player ID</th>
+                <th>Name</th>
+                <th>Photo</th>
+                <th>Position</th>
+                <th>Club ID</th>
+                <th>Nationality ID</th>
+                <th>Rating</th>
+                <th>Physical GK ID</th>
+                <th>Physical Player ID</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+                <tr>
+                    <td><?php echo $row['player_id']; ?></td>
+                    <td><?php echo htmlspecialchars($row['name']); ?></td>
+                    <td class="photo">
+                        <img src="<?php echo htmlspecialchars($row['photo']); ?>" alt="Player Photo" />
+                    </td>
+                    <td><?php echo $row['position']; ?></td>
+                    <td><?php echo $row['club_id']; ?></td>
+                    <td><?php echo $row['nationality_id']; ?></td>
+                    <td><?php echo $row['rating']; ?></td>
+                    <td><?php echo $row['physicalGk_id']; ?></td>
+                    <td><?php echo $row['physicalPlayer_id']; ?></td>
+                    <td>
+                        <button class="btn btn-edit" onclick="editPlayer(<?php echo $row['player_id']; ?>)">Edit</button>
+                        <button class="btn btn-delete" onclick="deletePlayer(<?php echo $row['player_id']; ?>)">Delete</button>
+                    </td>
+                </tr>
+            <?php endwhile; ?>
+        </tbody>
     </table>
-  </div>
+</div>
 
             <!-- ========================= formulaire ==================== -->
         
-            <div id="player_form" class="form-container" style="display:none">
+            <!-- <div id="player_form" class="form-container" style="display:none">
   <h2>Player Form</h2>
   <form id="formulaire_joueur">
     <div class="form-group">
@@ -164,7 +167,7 @@ include 'connection.php';
 
     <div class="form-group">
       <label for="nationality">Nationality</label>
-      <input type="text" id="nationality" name="nationality" placeholder="Enter nationality" />
+      <input type="number" id="nationality" name="nationality" placeholder="Enter nationality" />
       <span id="nationality-error"></span>
     </div>
     <div class="form-group">
@@ -179,7 +182,7 @@ include 'connection.php';
     </div>
     <div class="form-group">
       <label for="club">Club</label>
-      <input type="text" id="club" name="club" placeholder="Enter club name" />
+      <input type="number" id="club" name="club" placeholder="Enter club name" />
       <span id="club-error"></span>
     </div>
 
@@ -315,7 +318,7 @@ include 'connection.php';
       <button type="submit" class="btn-submit">Ajouter joueur</button>
     </div>
   </form>
-</div>
+</div> -->
             <script src="dashboard.js"></script>
             <script src="players.js"></script>
 
