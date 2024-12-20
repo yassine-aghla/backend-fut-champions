@@ -10,7 +10,7 @@ $club_id = $_POST['clubP']; // Assurez-vous que cette valeur est bien envoyée
 $nationality_id = $_POST['nationalityP']; // Assurez-vous que cette valeur est bien envoyée
 
 // Vérifier si le club existe
-$checkClub = "SELECT club_id FROM clubs WHERE club_id = '$club_id'";
+$checkClub = "SELECT club_id FROM clubs WHERE name = '$club_id'";
 $resultClub = mysqli_query($conn, $checkClub);
 
 if (mysqli_num_rows($resultClub) === 0) {
@@ -18,7 +18,7 @@ if (mysqli_num_rows($resultClub) === 0) {
 }
 
 // Vérifier si la nationalité existe
-$checkNationality = "SELECT nationality_id FROM nationalities WHERE nationality_id = '$nationality_id'";
+$checkNationality = "SELECT nationality_id FROM nationalities WHERE name = '$nationality_id'";
 $resultNationality = mysqli_query($conn, $checkNationality);
 
 if (mysqli_num_rows($resultNationality) === 0) {

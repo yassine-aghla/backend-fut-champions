@@ -96,132 +96,149 @@ include 'connection.php';
 <?php
 include 'connection.php';
 
-// Requête pour récupérer les données avec jointures
-$query = "
-    SELECT 
-        p.player_id, 
-        p.name AS player_name, 
-        p.photo, 
-        p.position, 
-        p.rating, 
-        c.name AS club_name, 
-        
-        n.name AS nationality_name, 
-        
-        p.physicalGk_id, 
-        p.physicalPlayer_id
-    FROM players p
-    JOIN clubs c ON p.club_id = c.club_id
-    JOIN nationalities n ON p.nationality_id = n.nationality_id
-";
-$result = mysqli_query($conn, $query);
+// Requête pour les joueurs (hors gardiens)
+$players_query = "
+SELECT 
+    p.player_id, p.name AS player_name, p.photo, p.position, p.rating,
+    c.name AS club_name, 
+    n.name AS nationality_name,
+    ps.pace, ps.shooting, ps.dribbling, ps.passing, ps.defending, ps.physical
+FROM 
+    players p
+LEFT JOIN clubs c ON p.club_id = c.club_id
+LEFT JOIN nationalities n ON p.nationality_id = n.nationality_id
+LEFT JOIN physique_player ps ON p.physicalPlayer_id = ps.physicalPlayer_id
+WHERE 
+    p.position != 'GK'";
 
-if (!$result) {
-    die("Erreur lors de la récupération des données : " . mysqli_error($conn));
+// Requête pour les gardiens
+$gk_query = "
+SELECT 
+    p.player_id, p.name AS player_name, p.photo, p.position, p.rating,
+    c.name AS club_name, 
+    n.name AS nationality_name,
+    gk.diving, gk.handling, gk.kicking, gk.reflexes, gk.speed, gk.positioning
+FROM 
+    players p
+LEFT JOIN clubs c ON p.club_id = c.club_id
+LEFT JOIN nationalities n ON p.nationality_id = n.nationality_id
+LEFT JOIN physique_gardien gk ON p.physicalGk_id = gk.physicalGk_id
+WHERE 
+    p.position = 'GK'";
+
+// Exécute les requêtes
+$players_result = $conn->query($players_query);
+$gk_result = $conn->query($gk_query);
+
+
+
+if (isset($_GET['delete_id'])) {
+    $player_id = $_GET['delete_id'];
+    $delete_query = "DELETE FROM players WHERE player_id = ?";
+    $stmt = $conn->prepare($delete_query);
+    $stmt->bind_param("i", $player_id);
+    $stmt->execute();
+    $stmt->close();
+    header("Location: players.php"); // Rediriger pour éviter un refresh avec la suppression
+    exit;
 }
 ?>
-
-<div class="dashboard">
-    <h1>Players Table</h1>
-    <table>
-        <thead>
-            <tr>
-                <!-- <th>Player ID</th> -->
-                <th>Name</th>
-                <th>Photo</th>
-                <th>Position</th>
-                <th>Club</th>
-                <th>Nationality</th>
-                <th>Rating</th>
-                <th>pace</th>
-                <th>shooting</th>
-                <th>driblling</th>
-                <th>passing</th>
-                <th>defending</th>
-                <th>physical</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Dashboard</title>
+   
+</head>
+<body>
+    <div class="dashboard">
+        <h1>Players Table</h1>
+        <table>
+            <thead>
                 <tr>
-                  
-                    <td><?php echo htmlspecialchars($row['player_name']); ?></td>
-                    <td class="photo">
-                        <img src="<?php echo htmlspecialchars($row['photo']); ?>" alt="Player Photo" />
-                    </td>
-                    <td><?php echo $row['position']; ?></td>
-                    <td>
-                      
-                        <?php echo htmlspecialchars($row['club_name']); ?>
-                    </td>
-                    <td>
-                        
-                        <?php echo htmlspecialchars($row['nationality_name']); ?>
-                    </td>
-                    <td><?php echo $row['rating']; ?></td>
-                    <td><?php echo $row['physicalGk_id']; ?></td>
-                    <td><?php echo $row['physicalPlayer_id']; ?></td>
-                    <td>
-                        <button class="btn btn-edit" onclick="editPlayer(<?php echo $row['player_id']; ?>)">Edit</button>
-                        <button class="btn btn-delete" onclick="deletePlayer(<?php echo $row['player_id']; ?>)">Delete</button>
-                    </td>
+                    <th>Name</th>
+                    <th>Photo</th>
+                    <th>Position</th>
+                    <th>Club</th>
+                    <th>Nationality</th>
+                    <th>Rating</th>
+                    <th>Pace</th>
+                    <th>Shooting</th>
+                    <th>Dribbling</th>
+                    <th>Passing</th>
+                    <th>Defending</th>
+                    <th>Physical</th>
+                    <th>Actions</th>
                 </tr>
-            <?php endwhile; ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <?php while ($row = mysqli_fetch_assoc($players_result)) : ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($row['player_name']); ?></td>
+                        <td><img src="<?php echo htmlspecialchars($row['photo']); ?>" alt="Player Photo"></td>
+                        <td><?php echo htmlspecialchars($row['position']); ?></td>
+                        <td><?php echo htmlspecialchars($row['club_name']); ?></td>
+                        <td><?php echo htmlspecialchars($row['nationality_name']); ?></td>
+                        <td><?php echo htmlspecialchars($row['rating']); ?></td>
+                        <td><?php echo htmlspecialchars($row['pace']); ?></td>
+                        <td><?php echo htmlspecialchars($row['shooting']); ?></td>
+                        <td><?php echo htmlspecialchars($row['dribbling']); ?></td>
+                        <td><?php echo htmlspecialchars($row['passing']); ?></td>
+                        <td><?php echo htmlspecialchars($row['defending']); ?></td>
+                        <td><?php echo htmlspecialchars($row['physical']); ?></td>
+                        <td>
+                            <button class="btn btn-edit" onclick="editPlayer(<?php echo $row['player_id']; ?>)">Edit</button>
+                            <a href="?delete_id=<?php echo $row['player_id']; ?>" class="btn btn-delete">Delete</a>
+                        </td>
+                    </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
 
-    <h1>Gardien table</h1>
-    <table>
-        <thead>
-            <tr>
-               
-                <th>Name</th>
-                <th>Photo</th>
-                <th>Position</th>
-                <th>Club</th>
-                <th>Nationality</th>
-                <th>Rating</th>
-                <th>diving</th>
-                <th>handling</th>
-                <th>kicking</th>
-                <th>reflexes</th>
-                <th>speed</th>
-                <th>positionning</th>
-               
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        
-            <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+        <h1>Goalkeepers Table</h1>
+        <table>
+            <thead>
                 <tr>
-                    
-                    <td><?php echo htmlspecialchars($row['player_name']); ?></td>
-                    <td class="photo">
-                        <img src="<?php echo htmlspecialchars($row['photo']); ?>" alt="Player Photo" />
-                    </td>
-                    <td><?php echo $row['position']; ?></td>
-                    <td>
-                      
-                        <?php echo htmlspecialchars($row['club_name']); ?>
-                    </td>
-                    <td>
-                        
-                        <?php echo htmlspecialchars($row['nationality_name']); ?>
-                    </td>
-                    <td><?php echo $row['rating']; ?></td>
-                    <td><?php echo $row['physicalGk_id']; ?></td>
-                    <td><?php echo $row['physicalPlayer_id']; ?></td>
-                    <td>
-                        <button class="btn btn-edit" onclick="editPlayer(<?php echo $row['player_id']; ?>)">Edit</button>
-                        <button class="btn btn-delete" onclick="deletePlayer(<?php echo $row['player_id']; ?>)">Delete</button>
-                    </td>
+                    <th>Name</th>
+                    <th>Photo</th>
+                    <th>Position</th>
+                    <th>Club</th>
+                    <th>Nationality</th>
+                    <th>Rating</th>
+                    <th>Diving</th>
+                    <th>Handling</th>
+                    <th>Kicking</th>
+                    <th>Reflexes</th>
+                    <th>Speed</th>
+                    <th>Positioning</th>
+                    <th>Actions</th>
                 </tr>
-            <?php endwhile; ?>
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                <?php while ($row = mysqli_fetch_assoc($gk_result)) : ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($row['player_name']); ?></td>
+                        <td><img src="<?php echo htmlspecialchars($row['photo']); ?>" alt="Player Photo"></td>
+                        <td><?php echo htmlspecialchars($row['position']); ?></td>
+                        <td><?php echo htmlspecialchars($row['club_name']); ?></td>
+                        <td><?php echo htmlspecialchars($row['nationality_name']); ?></td>
+                        <td><?php echo htmlspecialchars($row['rating']); ?></td>
+                        <td><?php echo htmlspecialchars($row['diving']); ?></td>
+                        <td><?php echo htmlspecialchars($row['handling']); ?></td>
+                        <td><?php echo htmlspecialchars($row['kicking']); ?></td>
+                        <td><?php echo htmlspecialchars($row['reflexes']); ?></td>
+                        <td><?php echo htmlspecialchars($row['speed']); ?></td>
+                        <td><?php echo htmlspecialchars($row['positioning']); ?></td>
+                        <td>
+                            <button class="btn btn-edit" onclick="editPlayer(<?php echo $row['player_id']; ?>)">Edit</button>
+                            <a href="?delete_id=<?php echo $row['player_id']; ?>" class="btn btn-delete">Delete</a>
+                        </td>
+                    </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
+    </div>
 
 
             <!-- ========================= formulaire ==================== -->

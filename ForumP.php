@@ -23,7 +23,7 @@
 <div id="player_form" class="form-container" >
   <h2>Player Form</h2>
 
-  <form  method="POST" action="createN.php" id="formulaire_joueur" >
+  <form  method="POST" action="test.php" id="formulaire_joueur" >
     <div class="form-group">
       <label for="name">Name</label>
       <input type="text" id="name" name="name" placeholder="Enter player name" required />
@@ -156,7 +156,7 @@
     </div>
   </div>
 </div>
-<button type="submit"name="submit" class="btn-submit">Ajouter joueur</button>
+<button type="submit" name="submit" class="btn-submit">Ajouter joueur</button>
 </form>
 </div>
 <script>
