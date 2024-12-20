@@ -32,6 +32,7 @@ $requete = "
 ";
 
 if (mysqli_query($conn, $requete)) {
+    header("location:players.php");
     echo "Joueur ajouté avec succès.";
 } else {
     die("Erreur lors de l'insertion du joueur : " . mysqli_error($conn));

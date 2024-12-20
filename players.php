@@ -96,10 +96,23 @@ include 'connection.php';
 <?php
 include 'connection.php';
 
-// Récupérer les données de la table `players`
+// Requête pour récupérer les données avec jointures
 $query = "
-    SELECT p.player_id, p.name, p.photo, p.position, p.club_id, p.nationality_id, p.rating, p.physicalGk_id, p.physicalPlayer_id
+    SELECT 
+        p.player_id, 
+        p.name AS player_name, 
+        p.photo, 
+        p.position, 
+        p.rating, 
+        c.name AS club_name, 
+        
+        n.name AS nationality_name, 
+        
+        p.physicalGk_id, 
+        p.physicalPlayer_id
     FROM players p
+    JOIN clubs c ON p.club_id = c.club_id
+    JOIN nationalities n ON p.nationality_id = n.nationality_id
 ";
 $result = mysqli_query($conn, $query);
 
@@ -113,29 +126,90 @@ if (!$result) {
     <table>
         <thead>
             <tr>
-                <th>Player ID</th>
+                <!-- <th>Player ID</th> -->
                 <th>Name</th>
                 <th>Photo</th>
                 <th>Position</th>
-                <th>Club ID</th>
-                <th>Nationality ID</th>
+                <th>Club</th>
+                <th>Nationality</th>
                 <th>Rating</th>
-                <th>Physical GK ID</th>
-                <th>Physical Player ID</th>
+                <th>pace</th>
+                <th>shooting</th>
+                <th>driblling</th>
+                <th>passing</th>
+                <th>defending</th>
+                <th>physical</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             <?php while ($row = mysqli_fetch_assoc($result)) : ?>
                 <tr>
-                    <td><?php echo $row['player_id']; ?></td>
-                    <td><?php echo htmlspecialchars($row['name']); ?></td>
+                  
+                    <td><?php echo htmlspecialchars($row['player_name']); ?></td>
                     <td class="photo">
                         <img src="<?php echo htmlspecialchars($row['photo']); ?>" alt="Player Photo" />
                     </td>
                     <td><?php echo $row['position']; ?></td>
-                    <td><?php echo $row['club_id']; ?></td>
-                    <td><?php echo $row['nationality_id']; ?></td>
+                    <td>
+                      
+                        <?php echo htmlspecialchars($row['club_name']); ?>
+                    </td>
+                    <td>
+                        
+                        <?php echo htmlspecialchars($row['nationality_name']); ?>
+                    </td>
+                    <td><?php echo $row['rating']; ?></td>
+                    <td><?php echo $row['physicalGk_id']; ?></td>
+                    <td><?php echo $row['physicalPlayer_id']; ?></td>
+                    <td>
+                        <button class="btn btn-edit" onclick="editPlayer(<?php echo $row['player_id']; ?>)">Edit</button>
+                        <button class="btn btn-delete" onclick="deletePlayer(<?php echo $row['player_id']; ?>)">Delete</button>
+                    </td>
+                </tr>
+            <?php endwhile; ?>
+        </tbody>
+    </table>
+
+    <h1>Gardien table</h1>
+    <table>
+        <thead>
+            <tr>
+               
+                <th>Name</th>
+                <th>Photo</th>
+                <th>Position</th>
+                <th>Club</th>
+                <th>Nationality</th>
+                <th>Rating</th>
+                <th>diving</th>
+                <th>handling</th>
+                <th>kicking</th>
+                <th>reflexes</th>
+                <th>speed</th>
+                <th>positionning</th>
+               
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+            <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+                <tr>
+                    
+                    <td><?php echo htmlspecialchars($row['player_name']); ?></td>
+                    <td class="photo">
+                        <img src="<?php echo htmlspecialchars($row['photo']); ?>" alt="Player Photo" />
+                    </td>
+                    <td><?php echo $row['position']; ?></td>
+                    <td>
+                      
+                        <?php echo htmlspecialchars($row['club_name']); ?>
+                    </td>
+                    <td>
+                        
+                        <?php echo htmlspecialchars($row['nationality_name']); ?>
+                    </td>
                     <td><?php echo $row['rating']; ?></td>
                     <td><?php echo $row['physicalGk_id']; ?></td>
                     <td><?php echo $row['physicalPlayer_id']; ?></td>
@@ -148,6 +222,7 @@ if (!$result) {
         </tbody>
     </table>
 </div>
+
 
             <!-- ========================= formulaire ==================== -->
         

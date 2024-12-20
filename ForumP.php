@@ -8,7 +8,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<?php
+    // Inclure la connexion à la base de données
+    include('connection.php');
 
+    // Récupérer les clubs
+    $clubs_query = "SELECT club_id, name FROM clubs";
+    $clubs_result = $conn->query($clubs_query);
+
+    // Récupérer les nationalités
+    $nationalities_query = "SELECT nationality_id, name FROM nationalities";
+    $nationalities_result = $conn->query($nationalities_query);
+?>
 <div id="player_form" class="form-container" >
   <h2>Player Form</h2>
 
@@ -26,9 +37,14 @@
 
     <div class="form-group">
       <label for="nationality">Nationality</label>
-      <input type="number" id="nationality" name="nationalityP" placeholder="Enter nationality" />
+      <select id="nationality" name="nationalityP" required>
+        <?php while($row = $nationalities_result->fetch_assoc()) { ?>
+          <option value="<?php echo $row['nationality_id']; ?>"><?php echo $row['name']; ?></option>
+        <?php } ?>
+      </select>
       <span id="nationality-error"></span>
     </div>
+
     <div class="form-group">
       <label for="flag">Flag</label>
       <input type="url" id="joueur_drapeau" name="flag" placeholder="Enter flag URL" />
@@ -39,11 +55,17 @@
       <input type="url" id="joueur_logo" name="logo" placeholder="Enter logo URL" />
       <span id="joueur_logo-error"></span>
     </div>
+
     <div class="form-group">
       <label for="club">Club</label>
-      <input type="number" id="club" name="clubP" placeholder="Enter club name" />
+      <select id="club" name="clubP" required>
+        <?php while($row = $clubs_result->fetch_assoc()) { ?>
+          <option value="<?php echo $row['club_id']; ?>"><?php echo $row['name']; ?></option>
+        <?php } ?>
+      </select>
       <span id="club-error"></span>
     </div>
+
 
     <div class="form-group">
       <label for="rating">Rating</label>
