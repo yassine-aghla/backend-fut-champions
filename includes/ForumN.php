@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
   <div id="National_form" class="form-container club ">
 <h2>formulaire de les nationalities</h2>
 <?php
-  require 'connection.php';
+  require '../config/connection.php';
   if(isset($_GET['id'])){
     $id=$_GET['id'];
     $sql="select * from nationalities where nationality_id='$id'";
@@ -20,7 +20,7 @@
     $flag=$rows['flag'];
  }
   ?>
-<form method="POST" action="create.php?<?php if(isset($_GET['id'])){
+<form method="POST" action="../includes/create.php?<?php if(isset($_GET['id'])){
   echo "id=update";} ?>">
     <?php
 // Vérifiez si l'ID est dans l'URL.

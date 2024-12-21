@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Responsive Admin Dashboard | Korsat X Parmaga</title>
     <!-- ======= Styles ====== -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/style.css">
 </head>
 
 <body>
@@ -16,7 +16,7 @@
         <div class="navigation">
             <ul>
                 <li>
-                    <a href="dashboard.php">
+                    <a href="../includes/dashboard.php">
                         <span class="icon">
                         <ion-icon name="person-circle-outline"></ion-icon>
                         </span>
@@ -25,7 +25,7 @@
                 </li>
 
                 <li>
-                    <a href="dashboard.php">
+                    <a href="../includes/dashboard.php">
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
@@ -34,7 +34,7 @@
                 </li>
 
                 <li>
-                    <a href="players.php">
+                    <a href="../includes/players.php">
                         <span class="icon">
                             <ion-icon name="football-outline"></ion-icon>
                         </span>
@@ -43,7 +43,7 @@
                 </li>
 
                 <li>
-                    <a href="club.php">
+                    <a href="../includes/club.php">
                         <span class="icon">
                             <ion-icon name="shield-outline"></ion-icon>
                         </span>
@@ -52,7 +52,7 @@
                 </li>
 
                 <li>
-                    <a href="nationalite.php">
+                    <a href="../includes/nationalite.php">
                         <span class="icon">
                             <ion-icon name="flag-outline"></ion-icon>
                         </span>
@@ -87,7 +87,7 @@
                 </div> -->
 
                 <div class="user">
-                    <img src="img me.jpg" alt="">
+                    <img src="../assets/img me.jpg" alt="">
                 </div>
             </div>
 

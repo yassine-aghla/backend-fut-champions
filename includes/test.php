@@ -1,7 +1,6 @@
 <?php
 // Inclure la connexion à la base de données
-include('connection.php');
-
+include('../config/connection.php');
 if (isset($_POST['submit'])) {
     // Récupérer les données du formulaire
     $name = $_POST['name'];
@@ -73,6 +72,7 @@ if (isset($_POST['submit'])) {
 
     // Vérification de succès
     if ($stmt_main->affected_rows > 0) {
+        header("Location: ../includes/players.php");
         echo "Le joueur a été ajouté avec succès.";
     } else {
         echo "Erreur lors de l'ajout du joueur : " . $conn->error;

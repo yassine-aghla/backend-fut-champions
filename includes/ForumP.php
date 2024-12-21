@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
 <?php
     // Inclure la connexion à la base de données
-    include('connection.php');
+    include('../config/connection.php');
 
     // Récupérer les clubs
     $clubs_query = "SELECT club_id, name FROM clubs";
@@ -23,7 +23,7 @@
 <div id="player_form" class="form-container" >
   <h2>Player Form</h2>
 
-  <form  method="POST" action="test.php" id="formulaire_joueur" >
+  <form  method="POST" action="../includes/test.php" id="formulaire_joueur">
     <div class="form-group">
       <label for="name">Name</label>
       <input type="text" id="name" name="name" placeholder="Enter player name" required />
